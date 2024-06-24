@@ -1,29 +1,33 @@
-"use client";
-import { bubbleSortStep } from "@/algorithms/bubbleSort";
+import { selectionSortStep } from "@/algorithms/selectionSort";
 import { useState } from "react";
 
-//TODO: Stop addinng rows after sort is complete
+let initArray = [6, 3, 4, 8, 9, 1];
+let numSorted = 0;
 
-export default function BubbleSortComponent(props: { initArray: number[] }) {
+//implement refresh
+
+export default function SelectionSortComponent(props: { initArray: number[] }) {
 
     const initArray = props.initArray;
 
     const [currArray, setArray] = useState(initArray);
     const [allSteps, setAllSteps] = useState([initArray]);
 
+
     function nextStepHandler() {
 
         const initialArray = [...currArray]
-        const res = (bubbleSortStep(initialArray));
-        setArray(res.toSortArray);
-        const tempArray = [...res.toSortArray]
+        const res = (selectionSortStep(initialArray, numSorted));
+        setArray(res);
+        const tempArray = [...res]
         setAllSteps([...allSteps, tempArray]);
+        numSorted++;
 
 
     }
 
     return (
-        <>
+        <div className="">
             <div className="flex justify-center align-middle">
                 <div className="flex flex-row align-middle">{currArray.map((element) => (
                     <button
@@ -41,7 +45,7 @@ export default function BubbleSortComponent(props: { initArray: number[] }) {
                 </div>
             </div>
             <div className="divider"></div>
-            <div>All Steps</div>
+            <div className="text-xl my-4">All Steps</div>
             <div className="flex justify-center justify-items-center">
                 <div className="flex flex-col justify-center align-middle">{allSteps.map((bubbleSortArray) => (<div className="flex flex-row">{bubbleSortArray.map((element) => (<button
                     className={
@@ -52,7 +56,7 @@ export default function BubbleSortComponent(props: { initArray: number[] }) {
                     {element}
                 </button>))}</div>))}</div>
             </div>
-        </>
+        </div>
     );
 
 }

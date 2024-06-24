@@ -14,8 +14,7 @@ function bubbleSort(toSortArray: number[]): number[] {
 //takes in an array and performs one step of bubble sort
 export function bubbleSortStep(toSortArray: number[]) {
   let swapped = false;
-  const arrayToReturn = [...toSortArray];
-  for (let i = 0; i < arrayToReturn.length - 1; i++) {
+  for (let i = 0; i < toSortArray.length - 1; i++) {
     const ele1 = toSortArray[i];
     const ele2 = toSortArray[i + 1];
     if (ele2 < ele1) {
