@@ -16,7 +16,7 @@ export function merge(leftHalf: number[], rightHalf: number[]): number[] {
       toReturnArray.push(leftHalf[leftIter]);
       leftIter++;
 
-      if (leftIter >= rightHalf.length) {
+      if (leftIter >= leftHalf.length) {
         //no more left half push all the right side
         while (rightIter < rightHalf.length) {
           toReturnArray.push(rightHalf[rightIter]);
