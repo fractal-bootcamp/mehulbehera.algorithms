@@ -4,19 +4,6 @@ interface node {
   edges: node[];
 }
 
-export default function depthFirstSearch() {
-  const visited = [];
-  const stack = [];
-
-  //start with a
-  visited.push(nodeA);
-  for (let i = 0; i < nodeA.edges.length; i++) {}
-
-  console.log(visited.includes(nodeA));
-
-  return true;
-}
-
 const nodeA: node = { key: "A", edges: [] };
 const nodeB: node = { key: "B", edges: [nodeA] };
 const nodeC: node = { key: "C", edges: [nodeA] };
@@ -28,5 +15,22 @@ nodeA.edges.push(nodeC);
 nodeA.edges.push(nodeD);
 nodeA.edges.push(nodeB);
 
-console.log(nodeA.edges);
-depthFirstSearch();
+const visited: node[] = [];
+
+export function traverse(node: node) {
+  visited.push(node);
+  for (let i = 0; i < node.edges.length; i++) {
+    if (!visited.includes(node.edges[i])) {
+      traverse(node.edges[i]);
+    }
+  }
+  console.log(visited);
+
+  return;
+}
+
+export default function depthFirstSearch(starterNode: node) {
+  traverse(starterNode);
+}
+
+depthFirstSearch(nodeA);
