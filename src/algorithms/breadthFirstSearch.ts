@@ -9,16 +9,16 @@ const queue: node[] = [];
 
 export function traverseBFS(node: node) {
   visited.push(node);
-  queue[queue.length] = node;
+  queue.push(node);
 
   while (queue.length !== 0) {
-    const currNode = queue.pop();
+    const currNode = queue.shift();
     //console.log(currNode);
     for (let i = 0; i < currNode!.edges.length; i++) {
       if (!visited.includes(currNode!.edges[i])) {
         //console.log(currNode!.edges[i]);
         visited.push(currNode!.edges[i]);
-        queue[queue.length] = currNode!.edges[i];
+        queue.push(currNode!.edges[i]);
       }
     }
   }
@@ -26,7 +26,7 @@ export function traverseBFS(node: node) {
 
 export default function breadthFirstSearch(starterNode: node) {
   traverseBFS(starterNode);
-  //console.log(visited);
+  console.log(visited);
 }
 
 const nodeA: node = { key: "A", edges: [] };
